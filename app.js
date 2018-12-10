@@ -5,7 +5,7 @@ var proxy = require('http-proxy-middleware');
 var https = require('https');
 var app = express();
 var http = require('http');
-require('./certbotrenew.js')();
+var helmet = require('helmet');
 var waiverOptions = {
     target: 'http://localhost:2612',
     changeOrigin: false,
@@ -22,22 +22,30 @@ var fbookWebhookOptions = {
     }
 };
 
-var gekkoWebhookOptions = {
-    target: 'http://localhost:3000',
+var hnsaOptions = {
+    target: 'http://localhost:2334',
     changeOrigin: false,
     pathRewrite: {
-        '^/proxy/gekko': ''
+        '^/proxy/hnsa': ''
+    }
+};
+
+var hsbOptions = {
+    target: 'http://localhost:3333',
+    changeOrigin: false,
+    pathRewrite: {
+        '^/proxy/hsb': ''
     },
     auth: 'test:test'
 };
 
 var serverOptions = {
-    // ca: fs.readFileSync('/root/SmileZone/WebApp/config/ssl/smiiles.ca-bundle'),
     key: fs.readFileSync('/etc/letsencrypt/live/smiil.es/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/smiil.es/fullchain.pem'),
     secureProtocol: 'TLSv1_2_method',
     secureOptions: constants.SSL_OP_NO_SSLv3
 };
+app.use(helmet());
 app.use(function (req, res, next) {
     if (!req.secure) {
         return res.redirect(['https://', req.get('Host'), req.url].join(''));
@@ -46,6 +54,9 @@ app.use(function (req, res, next) {
 });
 app.use('/proxy/waiver', proxy(waiverOptions));
 app.use('/proxy/fbook', proxy(fbookWebhookOptions));
+app.use('/proxy/hnsa', proxy(hnsaOptions));
+app.use('/proxy/hsb', proxy(hsbOptions));
+
 app.use('/', proxy({ target: 'http://localhost:8080', changeOrigin: false }));
 http.createServer(app).listen(80);
 https.createServer(serverOptions, app).listen(443);
