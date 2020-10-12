@@ -9,7 +9,7 @@
     "express": "^4.15.3",
     "fs": "0.0.1-security",
     "helmet": "^3.12.1",
-    "http-proxy-middleware": "^0.17.4",
+    "http-proxy-middleware": "^0.21.0",
     "https": "^1.0.0",
     "proxy-middleware": "^0.15.0"
   },
