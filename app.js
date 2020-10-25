@@ -11,7 +11,8 @@ var waiverOptions = {
     changeOrigin: false,
     pathRewrite: {
         '^/proxy/waiver': ''
-    }
+    },
+	xfwd:true
 };
 
 var fbookWebhookOptions = {
@@ -19,7 +20,8 @@ var fbookWebhookOptions = {
     changeOrigin: false,
     pathRewrite: {
         '^/proxy/fbook': ''
-    }
+    },
+	xfwd:true
 };
 
 var hnsaOptions = {
@@ -27,7 +29,8 @@ var hnsaOptions = {
     changeOrigin: false,
     pathRewrite: {
         '^/proxy/hnsa': ''
-    }
+    },
+	xfwd:true
 };
 
 var hsbOptions = {
@@ -36,7 +39,16 @@ var hsbOptions = {
     pathRewrite: {
         '^/proxy/hsb': ''
     },
-    auth: 'test:test'
+	xfwd:true
+};
+
+var atbOptions = {
+	target: 'http://localhost:2350',
+	changeOrigin: false,
+	pathRewrite: {
+		'^/proxy/atb':''
+	},
+	xfwd:true
 };
 
 var serverOptions = {
@@ -56,7 +68,7 @@ app.use('/proxy/waiver', proxy(waiverOptions));
 app.use('/proxy/fbook', proxy(fbookWebhookOptions));
 app.use('/proxy/hnsa', proxy(hnsaOptions));
 app.use('/proxy/hsb', proxy(hsbOptions));
-
+app.use('/proxy/atb', proxy(atbOptions));
 app.use('/', proxy({ target: 'http://localhost:8080', changeOrigin: false }));
 http.createServer(app).listen(80);
 https.createServer(serverOptions, app).listen(443);
