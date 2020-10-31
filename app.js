@@ -54,8 +54,8 @@ var atbOptions = {
 };
 
 var serverOptions = {
-    key: fs.readFileSync('/etc/letsencrypt/live/'+login.site'/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/'login.site+'/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/'+login.site+'/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/'+login.site+'/fullchain.pem'),
     secureProtocol: 'TLSv1_2_method',
     secureOptions: constants.SSL_OP_NO_SSLv3
 };
