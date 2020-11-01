@@ -71,6 +71,7 @@ app.use('/proxy/fbook', proxy(fbookWebhookOptions));
 app.use('/proxy/hnsa', proxy(hnsaOptions));
 app.use('/proxy/hsb', proxy(hsbOptions));
 app.use('/proxy/atb', proxy(atbOptions));
+app.use('/public', express.static('public'))
 //app.use('/', proxy({ target: 'http://localhost:8080', changeOrigin: false }));
 
 app.get('/', function (req, res) {
