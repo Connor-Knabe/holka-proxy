@@ -80,5 +80,5 @@ app.get('/', function (req, res) {
     res.send('Hello World');
 });
 
-http.createServer(app).listen(8080);
+http.createServer(app).listen(80);
 https.createServer(serverOptions, app).listen(443);
