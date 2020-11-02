@@ -1,7 +1,8 @@
 var fs = require('fs');
 var constants = require('constants');
 var express = require('express');
-var proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 var https = require('https');
 var app = express();
 var http = require('http');
@@ -67,13 +68,13 @@ app.use(function (req, res, next) {
     }
     next();
 });
-app.use('/proxy/waiver', proxy(waiverOptions));
-app.use('/proxy/fbook', proxy(fbookWebhookOptions));
-app.use('/proxy/hnsa', proxy(hnsaOptions));
-app.use('/proxy/hsb', proxy(hsbOptions));
-app.use('/proxy/atb', proxy(atbOptions));
+app.use('/proxy/waiver', createProxyMiddleware(waiverOptions));
+app.use('/proxy/fbook', createProxyMiddleware(fbookWebhookOptions));
+app.use('/proxy/hnsa', createProxyMiddleware(hnsaOptions));
+app.use('/proxy/hsb', createProxyMiddleware(hsbOptions));
+app.use('/proxy/atb', createProxyMiddleware(atbOptions));
 app.use('/public', express.static('public'))
-//app.use('/', proxy({ target: 'http://localhost:8080', changeOrigin: false }));
+//app.use('/', createProxyMiddleware({ target: 'http://localhost:8080', changeOrigin: false }));
 
 app.get('/', function (req, res) {
     res.send('Hello World');
