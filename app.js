@@ -18,15 +18,6 @@ var waiverOptions = {
 	xfwd:true
 };
 
-var fbookWebhookOptions = {
-    target: 'http://localhost:1333',
-    changeOrigin: false,
-    pathRewrite: {
-        '^/proxy/fbook': ''
-    },
-	xfwd:true
-};
-
 var hnsaOptions = {
     target: 'http://localhost:2334',
     changeOrigin: false,
@@ -69,12 +60,10 @@ app.use(function (req, res, next) {
     next();
 });
 app.use('/proxy/waiver', createProxyMiddleware(waiverOptions));
-app.use('/proxy/fbook', createProxyMiddleware(fbookWebhookOptions));
 app.use('/proxy/hnsa', createProxyMiddleware(hnsaOptions));
 app.use('/proxy/hsb', createProxyMiddleware(hsbOptions));
 app.use('/proxy/atb', createProxyMiddleware(atbOptions));
 app.use('/public', express.static('public'))
-//app.use('/', createProxyMiddleware({ target: 'http://localhost:8080', changeOrigin: false }));
 
 app.get('/', function (req, res) {
     res.send('Hello World');
