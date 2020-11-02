@@ -61,6 +61,7 @@ var serverOptions = {
 };
 app.use(helmet());
 app.use(function (req, res, next) {
+    res.set('Content-Security-Policy', '');
     if (!req.secure) {
         return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
@@ -75,8 +76,8 @@ app.use('/public', express.static('public'))
 //app.use('/', proxy({ target: 'http://localhost:8080', changeOrigin: false }));
 
 app.get('/', function (req, res) {
-  res.send('Hello World')
+    res.send('Hello World');
 });
 
-http.createServer(app).listen(80);
+http.createServer(app).listen(8080);
 https.createServer(serverOptions, app).listen(443);
