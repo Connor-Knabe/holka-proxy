@@ -45,6 +45,15 @@ var atbOptions = {
 	xfwd:true
 };
 
+var fpaOptions = {
+	target: 'http://localhost:2335',
+	changeOrigin: false,
+	pathRewrite: {
+		'^/proxy/fpa':''
+	},
+	xfwd:true
+};
+
 var serverOptions = {
     key: fs.readFileSync('/etc/letsencrypt/live/'+login.site+'/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/'+login.site+'/fullchain.pem'),
@@ -63,6 +72,7 @@ app.use('/proxy/waiver', createProxyMiddleware(waiverOptions));
 app.use('/proxy/hnsa', createProxyMiddleware(hnsaOptions));
 app.use('/proxy/hsb', createProxyMiddleware(hsbOptions));
 app.use('/proxy/atb', createProxyMiddleware(atbOptions));
+app.use('/proxy/fpa', createProxyMiddleware(fpaOptions));
 app.use('/public', express.static('public'))
 
 app.get('/', function (req, res) {
