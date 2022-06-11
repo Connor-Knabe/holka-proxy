@@ -46,7 +46,7 @@ var atbOptions = {
 };
 
 var fpaOptions = {
-	target: 'http://localhost:2335',
+	target: 'http://localhost:2336',
 	changeOrigin: false,
 	pathRewrite: {
 		'^/proxy/fpa':''
@@ -64,7 +64,7 @@ app.use(helmet());
 app.use(function (req, res, next) {
     res.set('Content-Security-Policy', '');
     if (!req.secure) {
-        return res.redirect(['https://', req.get('Host'), req.url].join(''));
+//        return res.redirect(['https://', req.get('Host'), req.url].join(''));
     }
     next();
 });

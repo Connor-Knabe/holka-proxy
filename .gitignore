@@ -1,4 +1,5 @@
-node_modules
-ld/
+node_modules*
+ld/*
 login.js
+public/*
 log.*
