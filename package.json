@@ -8,7 +8,7 @@
     "helmet": "5.1.0",
     "http-proxy-middleware": "2.0.6",
     "https": "1.0.0",
-    "npm": "^8.12.1"
+    "npm": "^8.12.2"
   },
   "devDependencies": {},
   "scripts": {
