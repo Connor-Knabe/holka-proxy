@@ -4,13 +4,12 @@
   "description": "Reverse proxy for holka services and more",
   "main": "app.js",
   "dependencies": {
-    "express": "4.18.1",
+    "express": "^4.18.2",
     "helmet": "5.1.0",
     "http-proxy-middleware": "2.0.6",
     "https": "1.0.0",
     "npm": "^8.12.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
