@@ -3,3 +3,4 @@ ld/*
 login.js
 public/*
 log.*
+.DS_Store
