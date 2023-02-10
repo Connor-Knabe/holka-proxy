@@ -5,10 +5,10 @@
   "main": "app.js",
   "dependencies": {
     "express": "^4.18.2",
-    "helmet": "5.1.0",
-    "http-proxy-middleware": "2.0.6",
-    "https": "1.0.0",
-    "npm": "^8.12.1"
+    "helmet": "^6.0.1",
+    "http-proxy-middleware": "^2.0.6",
+    "https": "^1.0.0",
+    "npm": "^9.4.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
