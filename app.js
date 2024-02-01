@@ -54,6 +54,14 @@ var fpaOptions = {
 	xfwd:true
 };
 
+var membershipCalc = {
+	target: 'http://localhost:5000',
+	changeOrigin: false,
+	pathRewrite: {
+		'^/proxy/membership-calc':''
+	},
+	xfwd:true
+};
 /*var serverOptions = {
     key: fs.readFileSync('/etc/letsencrypt/live/'+login.site+'/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/'+login.site+'/fullchain.pem'),
@@ -73,6 +81,7 @@ app.use(helmet());
 //app.use('/proxy/hsb', createProxyMiddleware(hsbOptions));
 //app.use('/proxy/atb', createProxyMiddleware(atbOptions));
 app.use('/proxy/fpa', createProxyMiddleware(fpaOptions));
+app.use('/proxy/fpa', createProxyMiddleware(membershipCalc));
 app.use('/public', express.static('public'))
 
 app.get('/', function (req, res) {
