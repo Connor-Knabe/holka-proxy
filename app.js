@@ -58,7 +58,7 @@ var membershipCalc = {
 	target: 'http://localhost:5000',
 	changeOrigin: false,
 	pathRewrite: {
-		'^/':''
+		'^/proxy/membership-calc':''
 	},
 	xfwd:true
 };
