@@ -81,7 +81,7 @@ app.use(helmet());
 //app.use('/proxy/hsb', createProxyMiddleware(hsbOptions));
 //app.use('/proxy/atb', createProxyMiddleware(atbOptions));
 app.use('/proxy/fpa', createProxyMiddleware(fpaOptions));
-app.use('/proxy/fpa', createProxyMiddleware(membershipCalc));
+app.use('/proxy/membership-calc', createProxyMiddleware(membershipCalc));
 app.use('/public', express.static('public'))
 
 app.get('/', function (req, res) {
